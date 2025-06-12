@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceScribe - Real-time Meeting Transcriber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo">VoiceScribe</div>
+            <nav>
+                <button class="nav-btn active" data-page="transcribe">Transcribe</button>
+                <button class="nav-btn" data-page="library">Library</button>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Transcribe Page -->
+            <section id="transcribe-page" class="page active">
+                <div class="transcribe-container">
+                    <div class="transcribe-header">
+                        <h1>Real-time Transcription</h1>
+                        <p>Press the button below to start transcribing your meeting</p>
+                    </div>
+                    
+                    <div class="transcription-box">
+                        <div id="transcription-content" class="transcription-content">
+                            <p class="placeholder">Your transcription will appear here...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="controls">
+                        <div class="language-controls">
+                            <label for="source-language">Source Language:</label>
+                            <select id="source-language" class="language-select">
+                                <option value="en-US">English (US)</option>
+                                <option value="es-ES">Spanish</option>
+                                <option value="fr-FR">French</option>
+                                <option value="de-DE">German</option>
+                                <option value="it-IT">Italian</option>
+                                <option value="ja-JP">Japanese</option>
+                                <option value="ko-KR">Korean</option>
+                                <option value="zh-CN">Chinese (Simplified)</option>
+                                <option value="ru-RU">Russian</option>
+                            </select>
+                        </div>
+                        <div class="language-controls">
+                            <label for="target-language">Translate to:</label>
+                            <select id="target-language" class="language-select">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                                <option value="it">Italian</option>
+                                <option value="ja">Japanese</option>
+                                <option value="ko">Korean</option>
+                                <option value="zh">Chinese (Simplified)</option>
+                                <option value="ru">Russian</option>
+                            </select>
+                        </div>
+                        <div class="button-controls">
+                            <button id="start-btn" class="primary-btn">
+                                <span class="btn-icon">🎙️</span>
+                                Start Transcribing
+                            </button>
+                            <button id="stop-btn" class="primary-btn hidden">
+                                <span class="btn-icon">⏹️</span>
+                                Stop Transcribing
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Library Page -->
+            <section id="library-page" class="page">
+                <div class="library-container">
+                    <div class="library-header">
+                        <h1>Your Transcriptions</h1>
+                        <p>Access your saved transcription sessions</p>
+                    </div>
+                    
+                    <div id="transcription-list" class="transcription-list">
+                        <!-- Transcriptions will be added here dynamically -->
+                        <p class="empty-library">No transcriptions saved yet</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Document View/Edit Page -->
+            <section id="document-page" class="page">
+                <div class="document-container">
+                    <div class="document-header">
+                        <input type="text" id="doc-title" class="doc-title" placeholder="Document Title">
+                        <div class="document-actions">
+                            <button id="save-doc-btn" class="secondary-btn">Save</button>
+                            <button id="delete-doc-btn" class="secondary-btn danger">Delete</button>
+                            <button id="share-doc-btn" class="secondary-btn">Share</button>
+                            <button id="back-btn" class="secondary-btn">Back</button>
+                        </div>
+                    </div>
+                    
+                    <div class="document-content">
+                        <div id="doc-content" class="doc-content" contenteditable="true"></div>
+                        
+                        <div class="summary-section">
+                            <h3>Key Takeaways</h3>
+                            <div id="doc-summary" class="doc-summary" contenteditable="true">
+                                <p>Key points will be generated here...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for sharing -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Share Transcription</h2>
+            <div class="share-options">
+                <button class="share-btn" data-type="copy">Copy Link</button>
+                <button class="share-btn" data-type="email">Email</button>
+                <button class="share-btn" data-type="message">Message</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
